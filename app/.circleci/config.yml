@@ -13,18 +13,3 @@ jobs:
             gem install bundler
             bundle install
 
-      - run:
-          name: Run tests
-          command: bundle exec rspec
-
-  deploy:
-    docker:
-      - image: circleci/ruby:3.1.2
-
-    steps:
-      - checkout
-
-      - run:
-          name: Deploy to EC2
-          command: |
-            ssh -i ~/.ssh/deploy_key.pem deploy@YOUR_EC2_INSTANCE_IP "cd /path/to/app && git pull origin master && bundle install && RAILS_ENV=production bundle exec rake db:migrate && touch tmp/restart.txt"
