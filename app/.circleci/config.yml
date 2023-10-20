@@ -8,8 +8,8 @@ jobs:
       - checkout
 
       - run:
-          name: Install dependencies
+          name: Saying Hello
           command: |
-            gem install bundler
-            bundle install
-
+            echo 'Hello World!'
+            echo 'This is the delivery pipeline'
+            
