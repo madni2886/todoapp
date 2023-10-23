@@ -19,7 +19,7 @@ jobs:
           name: Install dependencies
           command: |
             gem install bundler
-            bundle install
+            bundle  install
 
       - run:
           name: Set up PostgreSQL
