@@ -1,8 +1,13 @@
 version: 2.1
+
 jobs:
   build:
     docker:
       - image: ruby:3.1.2  # Use the desired Ruby version
+      - image: postgres:latest  # Use a PostgreSQL image
+
+    environment:
+      RAILS_ENV: test
 
     working_directory: /app  # Set your working directory
 
@@ -16,11 +21,20 @@ jobs:
             bundle install
 
       - run:
+          name: Set up PostgreSQL
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:migrate
+
+      - run:
           name: Build and test
           command: |
             # Replace these commands with your build and test commands
             # For example, you might run 'rspec' or 'rails test'
-            ruby --version
             bundle exec rspec
 
-# You can add more jobs or workflows as needed
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
