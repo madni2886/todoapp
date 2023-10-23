@@ -20,6 +20,7 @@ jobs:
           command: |
             gem install bundler
             bundle  install
+            echo "hi madni"
 
       - run:
           name: Set up PostgreSQL
