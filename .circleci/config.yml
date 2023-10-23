@@ -20,18 +20,20 @@ jobs:
           command: |
             gem install bundler
             bundle  install
-            echo "hi madni"
+            echo "Bundle install runs successfully"
 
       - run:
           name: Set up PostgreSQL
           command: |
             bundle exec rake db:create
             bundle exec rake db:migrate
+            echo "db created"
 
       - run:
           name: Build and test
           command: |
             bundle exec rspec
+            echo "test executed"
 
 workflows:
   version: 2
